@@ -9,10 +9,15 @@
     <dimen name="btn_margin_end">4dp</dimen>
     <dimen name="btn_margin_top">4dp</dimen>
     <dimen name="btn_margin_bottom">4dp</dimen>
-    <dimen name="btn_text_size">20sp</dimen>
+    <dimen name="btn_icon_padding">0dp</dimen>
+    <dimen name="btn_text_size">22sp</dimen>
+    <dimen name="btn_text_size_letter">17sp</dimen>
 
     <dimen name="display_width">0dp</dimen>
     <dimen name="display_height">0dp</dimen>
-    <dimen name="display_text_size">30sp</dimen>
+    <dimen name="display_text_size">32sp</dimen>
+    <dimen name="display_stroke_width">2dp</dimen>
+    <dimen name="display_padding_top">0dp</dimen>
+    <dimen name="display_padding_bottom">0dp</dimen>
 
 </resources>
