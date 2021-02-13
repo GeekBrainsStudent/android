@@ -2,22 +2,29 @@ package ru.geekbrains.android.kalculator;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String KEY_CALCULATOR = "key_calc";
+    public static final String APP_PREFERENCES = "settings";
+    public static final String APP_PREFERENCES_CUSTOM_DARK_MODE = "key_dark_mode";
 
     private Calculator mCalculator;
 
 //    Методы getText и setText класса TextView возвращают CharSequence, что мне кажется намного проще
     private TextView display;
+    private ImageView settings;
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
@@ -29,7 +36,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        инициализация display
+
+        SharedPreferences settings = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
+        if(savedInstanceState == null) {
+            int night_mode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+            if(settings.contains(APP_PREFERENCES_CUSTOM_DARK_MODE)) {
+                night_mode = settings.getBoolean(APP_PREFERENCES_CUSTOM_DARK_MODE, false) ?
+                        AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO;
+            }
+            AppCompatDelegate.setDefaultNightMode(night_mode);
+        }
+
+//        инициализация views
         initViews();
 //        восстанавливаем mCalculator, если есть что
         Calculator calc = null;
@@ -46,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initViews() {
         display = findViewById(R.id.display);
+        settings = findViewById(R.id.settings);
     }
 
     private void setButtonsListener() {
@@ -73,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.dot).setOnClickListener(this);
         findViewById(R.id.calc).setOnClickListener(this);
         findViewById(R.id.plus).setOnClickListener(this);
+        findViewById(R.id.settings).setOnClickListener(this);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -128,7 +148,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.dot:
                 buttonText = ((Button) v).getText().toString();
                 displayText = mCalculator.pushNumber(displayText, buttonText);
+                break;
+            case R.id.settings:
+                startSettingsActivity();
         }
         display.setText(displayText.subSequence(0, displayText.length()));
+    }
+
+    private void startSettingsActivity() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 }
