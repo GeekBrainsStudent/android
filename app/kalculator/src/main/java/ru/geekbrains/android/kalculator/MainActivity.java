@@ -8,14 +8,16 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String KEY_CALCULATOR = "key_calc";
 
     private Calculator mCalculator;
-    private EditText display;
+
+//    Методы getText и setText класса TextView возвращают CharSequence, что мне кажется намного проще
+    private TextView display;
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
@@ -38,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             mCalculator = new Calculator();
         }
-        mCalculator.setDisplay(display);
 //        Устанавливаем листнеры на все кнопки
         setButtonsListener();
     }
@@ -77,39 +78,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
+        String displayText = display.getText().toString();
+        String buttonText = null;
         switch(v.getId()) {
             case R.id.mr:
-                mCalculator.pushMemRead();
+                displayText = mCalculator.pushMemRead();
                 break;
             case R.id.mc:
-                mCalculator.pushMemClear();
-                break;
+                mCalculator.pushMemClear(displayText);
+                return;
             case R.id.backspace:
-                mCalculator.pushBackspace();
+                displayText = mCalculator.pushBackspace(displayText);
                 break;
             case R.id.c:
-                mCalculator.pushClear();
+                displayText = mCalculator.pushClear();
                 break;
             case R.id.mplus:
-                mCalculator.pushMemPositive();
-                break;
+                mCalculator.pushMemPositive(displayText);
+                return;
             case R.id.mminus:
-                mCalculator.pushMemNegative();
-                break;
+                mCalculator.pushMemNegative(displayText);
+                return;
             case R.id.radic:
-                mCalculator.pushRadic();
+                displayText = mCalculator.pushRadic(displayText);
                 break;
             case R.id.percent:
-                mCalculator.pushPercent();
+                displayText = mCalculator.pushPercent(displayText);
                 break;
             case R.id.calc:
-                mCalculator.pushCalc();
+                displayText = mCalculator.pushCalc(displayText);
                 break;
             case R.id.plus:
             case R.id.minus:
             case R.id.multiply:
             case R.id.divide:
-                mCalculator.pushOperation(((Button) v).getText().toString());
+                buttonText = ((Button) v).getText().toString();
+                displayText = mCalculator.pushOperation(displayText, buttonText);
                 break;
             case R.id.one:
             case R.id.two:
@@ -122,8 +126,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.nine:
             case R.id.zero:
             case R.id.dot:
-                mCalculator.pushNumber(((Button) v).getText().toString());
-                break;
+                buttonText = ((Button) v).getText().toString();
+                displayText = mCalculator.pushNumber(displayText, buttonText);
         }
+        display.setText(displayText.subSequence(0, displayText.length()));
     }
 }

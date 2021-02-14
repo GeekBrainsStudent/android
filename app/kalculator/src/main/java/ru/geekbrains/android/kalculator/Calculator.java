@@ -12,99 +12,67 @@ public class Calculator implements OnClickHandler, Parcelable {
     private BigDecimal operand2;            // второй операнд
     private BigDecimal memory;              // содержит операнд в памяти
     private Operation operation;            // какая операция была нажата (если была нажата)
-    private EditText display;               // дисплей калькулятора
 
-    public void setDisplay(EditText display) {
-        this.display = display;
-    }
-
-    public BigDecimal getOperand1() {
-        return operand1;
-    }
-
-    public void setOperand1(BigDecimal operand1) {
-        this.operand1 = operand1;
-    }
-
-    public BigDecimal getOperand2() {
-        return operand2;
-    }
-
-    public void setOperand2(BigDecimal operand2) {
-        this.operand2 = operand2;
-    }
-
-    public BigDecimal getMemory() {
-        return memory;
-    }
-
-    public void setMemory(BigDecimal memory) {
-        this.memory = memory;
-    }
-
-    public Operation getOperation() {
-        return operation;
-    }
-
-    public void setOperation(Operation operation) {
-        this.operation = operation;
-    }
+    public void setOperand1(BigDecimal operand1) { this.operand1 = operand1; }
+    public void setOperand2(BigDecimal operand2) { this.operand2 = operand2; }
+    public void setMemory(BigDecimal memory) { this.memory = memory; }
+    public void setOperation(Operation operation) { this.operation = operation; }
 
 //    Реализация методов интерфейса OnClickHandler
-//    как я понял в рамках данного задания не надо реализовывать
+//    с заглушками
     @Override
-    public void pushMemRead() {
+    public String pushMemRead() {
+        return "memRead";
+    }
+
+    @Override
+    public void pushMemClear(String displayText) {
 
     }
 
     @Override
-    public void pushMemClear() {
+    public String pushBackspace(String displayText) {
+        return "backspace";
+    }
+
+    @Override
+    public String pushClear() {
+        return "clear";
+    }
+
+    @Override
+    public void pushMemPositive(String displayText) {
 
     }
 
     @Override
-    public void pushBackspace() {
+    public void pushMemNegative(String displayText) {
 
     }
 
     @Override
-    public void pushClear() {
-
+    public String pushRadic(String displayText) {
+        return "radic";
     }
 
     @Override
-    public void pushMemPositive() {
-
+    public String pushPercent(String displayText) {
+        return "percent";
     }
 
     @Override
-    public void pushMemNegative() {
-
+    public String pushNumber(String displayText, String buttonText) {
+        return buttonText;
     }
 
     @Override
-    public void pushRadic() {
-
+    public String pushOperation(String displayText, String buttonText) {
+        return buttonText;
     }
 
     @Override
-    public void pushPercent() {
-
-    }
-
-    @Override
-    public void pushNumber(String number) {
-
-    }
-
-    @Override
-    public void pushOperation(String operation) {
-
-    }
-
-    @Override
-    public void pushCalc() {
-
+    public String pushCalc(String displayText) {
+        return "Calc";
     }
 
 //    Реализация методов Parcelable

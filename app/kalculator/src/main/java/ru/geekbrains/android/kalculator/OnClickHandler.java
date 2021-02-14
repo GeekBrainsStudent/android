@@ -5,35 +5,35 @@ public interface OnClickHandler {
     /* Интерфейс связывает события макета с классом бизнес-логики. */
 
 //    нажат MR
-    void pushMemRead();
+    String pushMemRead();
 
 //    нажат MC
-    void pushMemClear();
+    void pushMemClear(String displayText);
 
 //    Нажат Backspace
-    void pushBackspace();
+    String pushBackspace(String displayText);
 
 //    нажат С
-    void pushClear();
+    String pushClear();
 
 //    нажат М+
-    void pushMemPositive();
+    void pushMemPositive(String displayText);
 
 //    нажат М-
-    void pushMemNegative();
+    void pushMemNegative(String displayText);
 
 //    нажат корень
-    void pushRadic();
+    String pushRadic(String displayText);
 
 //    нажат %
-    void pushPercent();
+    String pushPercent(String displayText);
 
 //    нажато число (1,2,3,4,5,6,7,8,9,0,.)
-    void pushNumber(String number);
+    String pushNumber(String displayText, String buttonText);
 
 //    нажата операция (+, -, /, *)
-    void pushOperation(String operation);
+    String pushOperation(String displayText, String buttonText);
 
 //    нажат =
-    void pushCalc();
+    String pushCalc(String displayText);
 }
