@@ -21,7 +21,7 @@
     <string name="mc">MC</string>
     <string name="mplus">M+</string>
     <string name="mminus">M-</string>
-    <string name="dot">&#8901;</string>
+    <string name="dot">.</string>
     <string name="calc">=</string>
 
 <!--    settings-->
