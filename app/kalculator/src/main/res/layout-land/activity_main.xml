@@ -71,6 +71,16 @@
         app:layout_constraintLeft_toRightOf="@id/btn_guideline_left"
         app:layout_constraintBottom_toTopOf="@id/display_guideline_top"/>
 
+    <ImageView
+        android:id="@+id/settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="VectorDrawableCompat"
+        app:srcCompat="@drawable/ic_baseline_settings_24"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/display_guideline_right"
+        app:layout_constraintBottom_toTopOf="@id/display_guideline_top" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/display_box"
         android:layout_width="@dimen/display_width"

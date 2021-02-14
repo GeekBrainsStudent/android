@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity">
+
+    <ImageView
+        android:id="@+id/back"
+        android:src="@drawable/ic_baseline_arrow_back_ios_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/left_gl"
+        app:layout_constraintBottom_toTopOf="@id/header_gl" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/header_gl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintGuide_percent="0.1"
+        android:orientation="horizontal"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_gl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.15"
+        android:orientation="vertical" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/header_gl"
+        android:text="Settings:"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/system_dark_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/header_gl"
+        app:layout_constraintStart_toEndOf="@id/left_gl"
+        android:text="System DarkMode" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/dark_light_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/system_dark_mode"
+        app:layout_constraintStart_toEndOf="@id/left_gl"
+        android:text="@string/dark_light_switch_text"
+        android:layout_marginStart="10dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

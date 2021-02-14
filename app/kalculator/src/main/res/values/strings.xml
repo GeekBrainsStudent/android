@@ -23,4 +23,7 @@
     <string name="mminus">M-</string>
     <string name="dot">&#8901;</string>
     <string name="calc">=</string>
+
+<!--    settings-->
+    <string name="dark_light_switch_text">Dark</string>
 </resources>
