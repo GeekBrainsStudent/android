@@ -1,3 +1,4 @@
+include ':app:mynotes'
 include ':app:kalculator'
 include ':app:lesson1'
 include ':app'
